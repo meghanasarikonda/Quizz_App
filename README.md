@@ -1,2 +1,2 @@
 # Quizz_App
-A full stack quizz aapliati0
+A full stack quizz application
