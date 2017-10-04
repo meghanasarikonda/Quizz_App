@@ -24,19 +24,7 @@ var Quiz = db.define('Quiz', {
 // force: true will drop the table if it already exists
 
 
-Quiz.sync({
-  force:true
-})
-.then(function() {
-  Quiz.create({
-    q: "what is today",
-    a: "sunny",
-    b: "windy",
-    c: "dusty",
-    d: "rainy",
-    ans: "a"
-  })
-})
+Quiz.sync()
 
 
 
