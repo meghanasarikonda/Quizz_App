@@ -20,7 +20,8 @@ class CreateQuiz extends React.Component {
           C: '2',
           D: '3'
         },
-      ]
+      ],
+      textForm: ''
     }
   }
 
@@ -65,27 +66,26 @@ class CreateQuiz extends React.Component {
     })
    }
 
+   displayForm (e) {
+    e.preventDefault();
+    console.log('world')
+   }
+
   render() {
-    console.log(2)
     return (
       <div>
-        {console.log(3)}
-        <form onSubmit={this.postQuizInfo.bind(this)}>
-
-          <input
-            type="text"
-            className="question"
-            ref={(input) => {this.textInput = input;}} />
-          <button onClick={this.post.bind(this)}>Wanna Create a Quizz?</button>
+        <button onClick={this.displayForm.bind(this)}>Wanna Create a Quizz?</button>
+      <div>
+        <form action="http://localhost:3000/api/quizdata" method="post">
+          <input type="text" placeholder="Enter the question" name="question"/>
+          <input type="text" placeholder="Enter option 1" name="option1"/>
+          <input type="text" placeholder="Enter option 2" name="option2"/>
+          <input type="text" placeholder="Enter option 3" name="option3"/>
+          <input type="text" placeholder="Enter option 4" name="option4"/>
+          <input type="text" placeholder="Enter correct option" name="answer"/>
+          <input type="submit"/>
         </form>
-        <div>{this.state.userQuiz.map((question) => {
-          return (
-            <li>{question.Q}</li>
-            )
-        })}</div>
-
-          <h1>{this.state.text}</h1>
-
+      </div>
       </div>
     );
   }
