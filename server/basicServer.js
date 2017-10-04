@@ -14,8 +14,16 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use(express.static('compiled'));
 
-app.get('/api/quizinfo', function(req, res) {
-
+app.get('/api/quizzes', function(req, res) {
+  console.log('in serevr',req.query)
+  Quiz.Quiz.findAll()
+  .then(users => {
+    return users;
+  })
+  .then(function(result) {
+    res.send(result)
+  })
+  //console.log('data----->', data)
 })
 
 app.get('/api/usescores', function(req, res) {
@@ -24,7 +32,7 @@ app.get('/api/usescores', function(req, res) {
 
 
 app.post('/api/quizdata', function(req, res) {
-  console.log('POST /api/quizdata req', req.body)
+  // console.log('POST /api/quizdata req', req.body)
   Quiz.Quiz.sync()
   .then(function() {
     Quiz.Quiz.create({
