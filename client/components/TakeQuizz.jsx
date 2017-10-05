@@ -18,7 +18,9 @@ class TakeQuizz extends React.Component {
       }
     })
     .then((response) => {
+      // console.log('doing get', response.data)
       this.setState({data: response.data})
+      // console.log('stateData', this.state.data)
     })
     .catch((error) => {
       console.log(error, 'err from displayQuizzes')
@@ -26,29 +28,24 @@ class TakeQuizz extends React.Component {
   }
 
   handleSubmit (e) {
-    e.preventDefault();
+    // e.preventDefault();
 
+    console.log('e----', e)
   }
 
   render() {
+    // console.log(Array.isArray(this.state.data), this.state.data)
     return (
       <div>
         <CreateQuiz/>
         <button onClick={this.displayQuizzes.bind(this)}>Take a Quizz...</button>
-        <div>{this.state.data.map((singleQuestion) => {
-          return (
-            <ul>
-              <li>{singleQuestion.q}</li>
-                <form  onChange={(e) => console.log(e.target.value)} onSubmit={this.handleSubmit.bind(this)}>
-                  <input type="radio" value="a" name="answer"/> {singleQuestion.a}
-                  <input type="radio" value="b" name="answer"/> {singleQuestion.b}
-                  <input type="radio" value="c" name="answer"/> {singleQuestion.c}
-                  <input type="radio" value="d" name="answer"/> {singleQuestion.d}
-                  <input type="submit" />
-                </form>
-            </ul>
-          )
-        })}
+        <div>
+          <ul>
+            {this.state.data.map((singleQuestion) => {
+              // console.log(singleQuestion, 'singleQuestion')
+              return <Question singleQuestion={singleQuestion}/>
+            })}
+          </ul>
         </div>
       </div>
     );
