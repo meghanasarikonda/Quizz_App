@@ -7,6 +7,9 @@ class TakeQuizz extends React.Component {
       value: '',
       score: 0
     }
+    this.updateScore = this.updateScore.bind(this);
+    this.displayQuizzes = this.displayQuizzes.bind(this);
+    this.displayScores = this.displayScores.bind(this);
   }
 
   displayQuizzes (e) {
@@ -20,6 +23,9 @@ class TakeQuizz extends React.Component {
     .then((response) => {
       // console.log('doing get', response.data)
       this.setState({data: response.data})
+      return (
+        <button>hi</button>
+      );
       // console.log('stateData', this.state.data)
     })
     .catch((error) => {
@@ -27,19 +33,27 @@ class TakeQuizz extends React.Component {
     })
   }
 
+  updateScore () {
+    this.setState({score: this.state.score + 1})
+  }
+
+  displayScores() {
+    alert('You got ' + this.state.score + ' score')
+  }
+
   render() {
     // console.log(Array.isArray(this.state.data), this.state.data)
+    console.log(this.state.score)
     return (
       <div>
         <CreateQuiz/>
-        <button onClick={this.displayQuizzes.bind(this)}>Take a Quizz...</button>
+        <button onClick={this.displayQuizzes}>Take a Quizz...</button>
+        <button onClick={this.displayScores}>Done!</button>
         <div>
-          <ul>
-            {this.state.data.map((singleQuestion) => {
-              // console.log(singleQuestion, 'singleQuestion')
-              return <Question singleQuestion={singleQuestion}/>
-            })}
-          </ul>
+          {this.state.data.map((singleQuestion) => {
+            // console.log(singleQuestion, 'singleQuestion')
+            return <Question singleQuestion={singleQuestion} updateScore={this.updateScore}/>
+          })}
         </div>
       </div>
     );
