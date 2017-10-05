@@ -3,7 +3,7 @@ class Question extends React.Component {
     super(props);
     this.state = {
       selectedOption: '',
-      correctOption: this.props.singleQuestion.ans
+      correctOption: this.props.singleQuestion.ans,
     };
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleOptionChange = this.handleOptionChange.bind(this);
@@ -11,9 +11,9 @@ class Question extends React.Component {
 
   handleSubmit(submitEvent) {
     submitEvent.preventDefault();
-    if (this.state.correctOption === this.state.selectedOption)
-      alert('Correct answer!');
-    else
+    if (this.state.correctOption === this.state.selectedOption) {
+      this.props.updateScore();
+    } else
     alert('Wrong answer!');
   }
 
