@@ -27,12 +27,6 @@ class TakeQuizz extends React.Component {
     })
   }
 
-  handleSubmit (e) {
-    // e.preventDefault();
-
-    console.log('e----', e)
-  }
-
   render() {
     // console.log(Array.isArray(this.state.data), this.state.data)
     return (
