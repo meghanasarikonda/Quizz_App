@@ -1,8 +1,8 @@
 class TakeQuizz extends React.Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
-      username: 'Meghana',
+      username: this.props.username,
       data: [],
       value: '',
       score: 0
@@ -38,7 +38,7 @@ class TakeQuizz extends React.Component {
   }
 
   displayScores() {
-    alert('You got ' + this.state.score + ' score')
+    alert('You got ' + this.state.score + ' score');
   }
 
   render() {
@@ -46,7 +46,7 @@ class TakeQuizz extends React.Component {
     console.log(this.state.score)
     return (
       <div>
-        <CreateQuiz/>
+        <CreateQuiz username={this.props.username}/>
         <button onClick={this.displayQuizzes}>Take a Quizz...</button>
         <button onClick={this.displayScores}>Done!</button>
         <div>
