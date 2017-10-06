@@ -1,8 +1,8 @@
-const App = ({ user="Human" }) => {
+const App = ({ user = prompt('Enter your name') }) => {
   return (
     <div>
       <h1 className="titLe"> Hello {user}! </h1>
-      <TakeQuizz/>
+      <TakeQuizz username={user}/>
     </div>
   );
 }
