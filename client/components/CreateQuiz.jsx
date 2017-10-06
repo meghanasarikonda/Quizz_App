@@ -3,19 +3,6 @@ class CreateQuiz extends React.Component {
     super();
   }
 
-  // componentDidMount () {
-  //   console.log(this, 'this.props')
-  //   axios.post('/api/username', {
-  //     username: this.props.username
-  //   })
-  //   .then((res) => {
-  //     console.log(res, 'resFromCreateQuizComp')
-  //   })
-  //   .catch(err => {
-  //     console.log('error')
-  //   })
-  // };
-
   render() {
     return (
       <div>
