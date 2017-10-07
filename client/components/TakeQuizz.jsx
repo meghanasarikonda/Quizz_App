@@ -23,9 +23,9 @@ class TakeQuizz extends React.Component {
     .then((response) => {
       // console.log('doing get', response.data)
       this.setState({data: response.data})
-      return (
-        <button>hi</button>
-      );
+      // return (
+      //   <button>hi</button>
+      // );
       // console.log('stateData', this.state.data)
     })
     .catch((error) => {
@@ -38,7 +38,17 @@ class TakeQuizz extends React.Component {
   }
 
   displayScores() {
-    alert('You got ' + this.state.score + ' score');
+    alert('Your score is ' + this.state.score);
+    axios.post('/api/userscores', {
+      score: this.state.score,
+      username: this.state.username
+    })
+    .then(response => {
+      console.log('done');
+    })
+    .catch(err => {
+      console.log(err, 'error in posting scores');
+    })
   }
 
   render() {

@@ -35,20 +35,18 @@ var User_Score = db.define('user_score', {
   test_score: Sequelize.INTEGER
 });
 
-// force: true will drop the table if it already exists
-
 // describe the model Quiz associations
 User.hasMany(Quiz, {foreignKey: 'user_id', sourceKey: 'user_id', constraints: false});
 Quiz.belongsTo(User, {foreignKey: 'user_id', sourceKey: 'user_id', constraints: false});
 
 
 // describe the model User_Score assoc...
-// User.hasMany(User_Score);
-// User_Score.belongsTo(User);
-// Quiz.hasMany(User_Score);
-// User_Score.belongsTo(Quiz);
+User.hasMany(User_Score);
+User_Score.belongsTo(User);
+Quiz.hasMany(User_Score);
+User_Score.belongsTo(Quiz);
 
-
+// force: true will drop the table if it already exists
 db.sync({
   // force: true
 })

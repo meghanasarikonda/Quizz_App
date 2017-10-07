@@ -15,21 +15,37 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static('compiled'));
 
 app.get('/api/quizzes', function(req, res) {
-  // console.log('in serevr',req.query)
-  db.Quiz.findAll()
+  console.log('in serevr',req.query)
+  db.Quiz.findAll({
+    where: {
+      user_id: 1
+    }
+  })
   .then(quizzes => {
     res.send(quizzes);
     // return users;
   })
 })
 
-app.get('/api/userscores', function(req, res) {
-
+app.post('/api/userscores', function(req, response) {
+  console.log(req.body, 'from post req to endpoint')
+  db.User.create({
+    username: req.body.username
+  })
+  .then(res => {
+    db.User_Score.create({
+      test_score: req.body.score,
+      UserUserId: res.dataValues.user_id
+    })
+  })
+  .catch(err => {
+    console.log('error')
+  })
 })
 
 
 app.post('/api/quizdata', function(req, response) {
-  console.log('POST /api/quizdata req', req.body)
+  // console.log('POST /api/quizdata req', req.body)
 
 
   db.User.create({
@@ -63,4 +79,4 @@ app.post('/api/quizdata', function(req, response) {
 
 app.listen(3000, function() {
   console.log('listening on port 3000');
-});
+})
