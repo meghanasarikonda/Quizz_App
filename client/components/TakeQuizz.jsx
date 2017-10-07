@@ -15,6 +15,7 @@ class TakeQuizz extends React.Component {
   displayQuizzes (e) {
     e.preventDefault();
     var self = this;
+    console.log(self.state.username)
     axios.get('/api/quizzes', {
       params: {
         username: self.state.username
@@ -22,6 +23,7 @@ class TakeQuizz extends React.Component {
     })
     .then((response) => {
       // console.log('doing get', response.data)
+      // console.log('........>responseFromTakeQuizz', response, '<............')
       this.setState({data: response.data})
       // return (
       //   <button>hi</button>
@@ -53,7 +55,7 @@ class TakeQuizz extends React.Component {
 
   render() {
     // console.log(Array.isArray(this.state.data), this.state.data)
-    console.log(this.state.score)
+    // console.log(this.state.score)
     return (
       <div>
         <CreateQuiz username={this.props.username}/>
