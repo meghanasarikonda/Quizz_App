@@ -15,7 +15,7 @@ var db = new Sequelize('quiz', 'root', '', {
 
 var User = db.define('User', {
   username: Sequelize.STRING,
-  user_id: {
+  id: {
     type: Sequelize.INTEGER,
     primaryKey: true,
     autoIncrement: true
@@ -36,15 +36,16 @@ var User_Score = db.define('user_score', {
 });
 
 // describe the model Quiz associations
-User.hasMany(Quiz, {foreignKey: 'user_id', sourceKey: 'user_id', constraints: false});
-Quiz.belongsTo(User, {foreignKey: 'user_id', sourceKey: 'user_id', constraints: false});
+User.hasMany(Quiz, {foreignKey: {allowNull: false}, onDelete: 'CASCADE'});
+Quiz.belongsTo(User, {foreignKey: {allowNull: false}, onDelete: 'CASCADE'});
 
 
 // describe the model User_Score assoc...
-User.hasMany(User_Score);
-User_Score.belongsTo(User);
-Quiz.hasMany(User_Score);
-User_Score.belongsTo(Quiz);
+//console.log('!!!!!!!!!', db.query, '!!!!!!!!!!')
+User.hasMany(User_Score, {foreignKey: {allowNull: false}, onDelete: 'CASCADE'});
+User_Score.belongsTo(User, {foreignKey: {allowNull: false}, onDelete: 'CASCADE'});
+Quiz.hasMany(User_Score, {foreignKey: {allowNull: false}, onDelete: 'CASCADE'});
+User_Score.belongsTo(Quiz, {foreignKey: {allowNull: false}, onDelete: 'CASCADE'});
 
 // force: true will drop the table if it already exists
 db.sync({
@@ -55,3 +56,4 @@ db.sync({
 exports.User = User;
 exports.Quiz = Quiz;
 exports.User_Score = User_Score;
+exports.connection = db;
