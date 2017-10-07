@@ -3,6 +3,7 @@ var bodyParser = require('body-parser');
 var express = require('express')
 var app = express();
 var db = require('./db/index')
+var sequelize = require('sequelize');
 
 app.use(bodyParser.json());
 
@@ -15,15 +16,37 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static('compiled'));
 
 app.get('/api/quizzes', function(req, res) {
+  // console.log('========>', sequelize.query, '<=========')
   console.log('in serevr',req.query)
+  // console.log("SELECT * FROM ", 'usersTable')
+
+  // db.connection.query("SELECT * FROM" + db.User, { type: sequelize.QueryTypes.SELECT})
+  // .then(function(users) {
+  //   console.log('fbydtbfufnygyfydtrdvbgh')
+  //   // We don't need spread here, since only the results will be returned for select queries
+  // })
+  // .catch(err => {
+  //   console.log('errrrrrr!!!!!!!')
+  // })
+
+
   db.Quiz.findAll({
-    where: {
-      user_id: 1
-    }
+    include: [{
+      model: db.User,
+      where: {
+        username: {
+          $ne: req.query.username
+        }
+      }
+    }]
   })
   .then(quizzes => {
+    // console.log('quizzes', quizzes, '<-------')
     res.send(quizzes);
     // return users;
+  })
+  .catch(err => {
+    console.log('error in findAll query', err)
   })
 })
 
@@ -52,9 +75,9 @@ app.post('/api/quizdata', function(req, response) {
     username: req.body.username
   })
   .then(res => {
-    // console.log('---->', res)
+    console.log('---->', res.dataValues)
     db.Quiz.create({
-      user_id: res.dataValues.user_id,
+      UserId: res.dataValues.id,
       q: req.body.question,
       a: req.body.a,
       b: req.body.b,
