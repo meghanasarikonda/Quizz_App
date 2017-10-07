@@ -79,6 +79,7 @@ class Question extends React.Component {
           </div>
           <input
             type="submit"
+            value="lock"
             onClick={this.handleSubmit}
           />
         </form>
