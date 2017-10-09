@@ -85,6 +85,24 @@ app.get('/api/delete', function(req, res) {
   })
 })
 
+app.post('/api/update', function(req, res) {
+  //console.log('---->', req.body, '<---')
+  db.Quiz.update(
+    {q: req.body.question},
+    {where: {
+      q: {
+        $eq: req.body.prevQuestion
+      }
+    }}
+  )
+  .then(result => {
+    res.send(result);
+  })
+  .catch(err => {
+    console.log('failed to update in db')
+  })
+})
+
 app.post('/api/userscores', function(req, response) {
   // console.log(req.body, 'from post req to endpoint')
   db.User.create({
