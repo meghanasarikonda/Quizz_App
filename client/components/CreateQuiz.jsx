@@ -1,3 +1,5 @@
+const { Button, Alert, Dropdown } = ReactBootstrap
+
 class CreateQuiz extends React.Component {
   constructor() {
     super();
@@ -36,7 +38,7 @@ class CreateQuiz extends React.Component {
     return (
       <div>
       <div>
-        <p>Wanna Create a Quiz?</p>
+        <h2>Wanna Create a Quiz?</h2>
         <form onSubmit={this.someFunc}>
           <input ref={(input) => this.q = input} type="text" placeholder="Enter the question" name="question"/>
           <input ref={(input) => this.a = input} type="text" placeholder="Enter option a" name="a"/>
@@ -44,7 +46,7 @@ class CreateQuiz extends React.Component {
           <input ref={(input) => this.c = input} type="text" placeholder="Enter option c" name="c"/>
           <input ref={(input) => this.d = input} type="text" placeholder="Enter option d" name="d"/>
           <input ref={(input) => this.ans = input} type="text" placeholder="Enter correct option" name="answer"/>
-          <input type="submit"/>
+          <input className="CreateQuizSubmit" type="submit"/>
         </form>
       </div>
       </div>

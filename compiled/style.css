@@ -1,4 +1,48 @@
+body {
+  background-color: #dcdfe5;
+}
+
+h2 {
+  font-family: Sans-Serif;
+  color: green;
+}
+
 .titLe {
+  font-family: Sans-Serif;
   text-align: center;
   color: green;
+}
+.CreateQuizSubmit {
+  color: white;
+  background-color: #6c90cc;
+  border-radius: 5px;
+}
+
+.takequizbtn {
+  background-color: #46e5ea;
+  padding: 10px;
+  padding-right: 50px;
+  font-size: 16px;
+}
+
+.DoneBtn {
+  background-color: green;
+  color: white;
+}
+
+.showCreatedQuiz {
+  background-color: #6b91a5;
+  padding: 10px;
+  color: white;
+  font-size: 16px;
+}
+
+.deletebtn {
+  background-color: red;
+  color: white;
+}
+
+.updatebtn {
+  background-color: green;
+  color: white;
 }

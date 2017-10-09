@@ -25,7 +25,7 @@ class ShowQuizzes extends React.Component{
   render() {
     return (
       <div>
-        <button onClick={this.showCreatedQuiz}> ShowCreatedQuizzes </button>
+        <button className="showCreatedQuiz" onClick={this.showCreatedQuiz}> Show Created Quizzes </button>
         <div>
           {this.state.data.map((question) =>
             <EditQuestion singleQuestion={question}/>

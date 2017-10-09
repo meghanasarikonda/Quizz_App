@@ -50,8 +50,8 @@ class EditQuestion extends React.Component {
       <div>
           <form>
           <input type="text" value={this.state.text} onChange={this.change} ref={(input) => this.textIp = input}/>
-          <button onClick={this.handleUpdate}>update</button>
-          <button onClick={this.handleSubmit}>delete</button>
+          <button className="updatebtn" onClick={this.handleUpdate}>update</button>
+          <button className="deletebtn" onClick={this.handleSubmit}>delete</button>
           </form>
       </div>
     );

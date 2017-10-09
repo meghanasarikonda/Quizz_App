@@ -36,7 +36,7 @@ class TakeQuizz extends React.Component {
   }
 
   displayScores() {
-    alert('Your score is ' + this.state.score);
+    alert('You got ' + this.state.score + 'points');
     axios.post('/api/userscores', {
       score: this.state.score,
       username: this.state.username
@@ -54,9 +54,9 @@ class TakeQuizz extends React.Component {
     return (
       <div>
         <CreateQuiz username={this.props.username}/>
-        <button onClick={this.displayQuizzes}>Take a Quizz...</button>
+        <button className="takequizbtn" onClick={this.displayQuizzes}>Take a Quizz...</button>
         <ShowQuizzes username={this.state.username}/>
-        <button onClick={this.displayScores}>Done!</button>
+        <button className="DoneBtn" onClick={this.displayScores}>Done!</button>
         <div>
           {this.state.data.map((singleQuestion) => {
             return <Question singleQuestion={singleQuestion} updateScore={this.updateScore}/>
