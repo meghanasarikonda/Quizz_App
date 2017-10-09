@@ -15,20 +15,16 @@ class TakeQuizz extends React.Component {
   displayQuizzes (e) {
     e.preventDefault();
     var self = this;
-    console.log(self.state.username)
     axios.get('/api/quizzes', {
       params: {
         username: self.state.username
       }
     })
     .then((response) => {
-      // console.log('doing get', response.data)
-      // console.log('........>responseFromTakeQuizz', response, '<............')
+      if(response.data.length === 0) {
+        alert('Hey, currently there are no quizzes, do u wanna create one?')
+      }
       this.setState({data: response.data})
-      // return (
-      //   <button>hi</button>
-      // );
-      // console.log('stateData', this.state.data)
     })
     .catch((error) => {
       console.log(error, 'err from displayQuizzes')
@@ -55,8 +51,6 @@ class TakeQuizz extends React.Component {
   }
 
   render() {
-    // console.log(Array.isArray(this.state.data), this.state.data)
-    // console.log(this.state.score)
     return (
       <div>
         <CreateQuiz username={this.props.username}/>
@@ -65,7 +59,6 @@ class TakeQuizz extends React.Component {
         <button onClick={this.displayScores}>Done!</button>
         <div>
           {this.state.data.map((singleQuestion) => {
-            // console.log(singleQuestion, 'singleQuestion')
             return <Question singleQuestion={singleQuestion} updateScore={this.updateScore}/>
           })}
         </div>

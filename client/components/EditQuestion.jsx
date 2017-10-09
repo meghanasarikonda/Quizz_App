@@ -12,8 +12,8 @@ class EditQuestion extends React.Component {
 
   handleSubmit(submitEvent) {
     submitEvent.preventDefault();
-    console.log(this.textIp.value, 'submitEvent')
-    console.log(this.state.text, 'cooo')
+    // console.log(this.textIp.value, 'submitEvent')
+    // console.log(this.state.text, 'cooo')
     axios.get('/api/delete', {
       params: {
         question: this.state.prevQuestion
@@ -45,9 +45,6 @@ class EditQuestion extends React.Component {
   }
 
   render() {
-    //console.log(this.textIp)
-    // console.log('correctOption', this.state.correctOption)
-    // console.log('You have selected:', this.state.selectedOption);
     const singleQuestion = this.props.singleQuestion;
     return (
       <div>

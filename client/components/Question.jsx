@@ -25,8 +25,6 @@ class Question extends React.Component {
 
 
   render() {
-    // console.log('correctOption', this.state.correctOption)
-    // console.log('You have selected:', this.state.selectedOption);
     const singleQuestion = this.props.singleQuestion;
     return (
       <div>

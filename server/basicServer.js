@@ -16,19 +16,6 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static('compiled'));
 
 app.get('/api/quizzes', function(req, res) {
-  // console.log('========>', sequelize.query, '<=========')
-  // console.log('in serevr',req.query)
-  // console.log("SELECT * FROM ", 'usersTable')
-
-  // db.connection.query("SELECT * FROM" + db.User, { type: sequelize.QueryTypes.SELECT})
-  // .then(function(users) {
-  //   console.log('fbydtbfufnygyfydtrdvbgh')
-  //   // We don't need spread here, since only the results will be returned for select queries
-  // })
-  // .catch(err => {
-  //   console.log('errrrrrr!!!!!!!')
-  // })
-
 
   db.Quiz.findAll({
     include: [{
@@ -41,9 +28,7 @@ app.get('/api/quizzes', function(req, res) {
     }]
   })
   .then(quizzes => {
-    // console.log('quizzes', quizzes, '<-------')
     res.send(quizzes);
-    // return users;
   })
   .catch(err => {
     console.log('error in findAll query', err)
@@ -86,7 +71,7 @@ app.get('/api/delete', function(req, res) {
 })
 
 app.post('/api/update', function(req, res) {
-  //console.log('---->', req.body, '<---')
+
   db.Quiz.update(
     {q: req.body.question},
     {where: {
@@ -104,19 +89,19 @@ app.post('/api/update', function(req, res) {
 })
 
 app.post('/api/userscores', function(req, response) {
-  // console.log(req.body, 'from post req to endpoint')
+
   db.User.create({
     username: req.body.username
   })
   .then(res => {
-    //console.log(res.dataValues, 'res<-----------')
+
     db.User_Score.create({
       test_score: req.body.score,
       UserId: res.dataValues.id
     })
     .then(res => {
       console.log('----->', res.dataValues, 'response from User_Score then')
-      // response.send(res.dataValues)
+
     })
   })
   .catch(err => {
@@ -126,8 +111,6 @@ app.post('/api/userscores', function(req, response) {
 
 
 app.post('/api/quizdata', function(req, response) {
-  // console.log('POST /api/quizdata req', req.body)
-
 
   db.User.create({
     username: req.body.username

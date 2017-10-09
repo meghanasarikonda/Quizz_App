@@ -16,7 +16,6 @@ class ShowQuizzes extends React.Component{
     })
     .then(result => {
       this.setState({data: result.data})
-      console.log('result from get request', result.data)
     })
     .catch(err => {
       console.log('err in get request of createdQuizzes')

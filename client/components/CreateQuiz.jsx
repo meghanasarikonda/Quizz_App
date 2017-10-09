@@ -36,7 +36,7 @@ class CreateQuiz extends React.Component {
     return (
       <div>
       <div>
-        <p>Wanna Create a Quizz?</p>
+        <p>Wanna Create a Quiz?</p>
         <form onSubmit={this.someFunc}>
           <input ref={(input) => this.q = input} type="text" placeholder="Enter the question" name="question"/>
           <input ref={(input) => this.a = input} type="text" placeholder="Enter option a" name="a"/>
