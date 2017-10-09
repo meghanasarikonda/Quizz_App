@@ -13,8 +13,7 @@ class Question extends React.Component {
     submitEvent.preventDefault();
     if (this.state.correctOption === this.state.selectedOption) {
       this.props.updateScore();
-    } else
-    alert('Wrong answer!');
+    }
   }
 
   handleOptionChange(changeEvent) {

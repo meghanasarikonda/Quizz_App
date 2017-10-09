@@ -46,6 +46,7 @@ class TakeQuizz extends React.Component {
       username: this.state.username
     })
     .then(response => {
+      console.log('response from userscores post', response)
       console.log('done');
     })
     .catch(err => {
@@ -60,6 +61,7 @@ class TakeQuizz extends React.Component {
       <div>
         <CreateQuiz username={this.props.username}/>
         <button onClick={this.displayQuizzes}>Take a Quizz...</button>
+        <ShowQuizzes username={this.state.username}/>
         <button onClick={this.displayScores}>Done!</button>
         <div>
           {this.state.data.map((singleQuestion) => {

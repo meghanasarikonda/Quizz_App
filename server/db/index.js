@@ -44,8 +44,8 @@ Quiz.belongsTo(User, {foreignKey: {allowNull: false}, onDelete: 'CASCADE'});
 //console.log('!!!!!!!!!', db.query, '!!!!!!!!!!')
 User.hasMany(User_Score, {foreignKey: {allowNull: false}, onDelete: 'CASCADE'});
 User_Score.belongsTo(User, {foreignKey: {allowNull: false}, onDelete: 'CASCADE'});
-Quiz.hasMany(User_Score, {foreignKey: {allowNull: false}, onDelete: 'CASCADE'});
-User_Score.belongsTo(Quiz, {foreignKey: {allowNull: false}, onDelete: 'CASCADE'});
+//Quiz.hasMany(User_Score, {foreignKey: {allowNull: false}, onDelete: 'CASCADE'});
+//User_Score.belongsTo(Quiz, {foreignKey: {allowNull: false}, onDelete: 'CASCADE'});
 
 // force: true will drop the table if it already exists
 db.sync({
